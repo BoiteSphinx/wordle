@@ -10,11 +10,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <link rel="stylesheet" href="/css/app.css">
-        <script src="/js/app.js"></script>
+        <script src="/js/app.js" defer></script>
     </head>
     <body>
         <div id="game">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="tile"></div>
                 <div class="tile"></div>
                 <div class="tile"></div>
@@ -30,7 +30,7 @@
                 <div class="tile"></div>
                 <div class="tile"></div>
                 <div class="tile"></div>
-            </div>
+            </div> --}}
         </div>
     </body>
 </html>
