@@ -14,18 +14,23 @@
         <script src="/js/app.js"></script>
     </head>
     <body>
-        <div
-            id="game"
+        <main
             x-data="game"
             @keyup.window="onKeyPress($event.key)"
         >
-            <template x-for="row in board">
-                <div class="row">
-                    <template x-for="tile in row">
-                        <div class="tile" x-text="tile.letter"></div>
-                    </template>
-                </div>
-            </template>
-        </div>
+            <div
+                id="game"
+            >
+                <template x-for="row in board">
+                    <div class="row">
+                        <template x-for="tile in row">
+                            <div class="tile" x-text="tile.letter"></div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+
+            <output x-text="message"></output>
+        </main>
     </body>
 </html>

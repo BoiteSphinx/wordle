@@ -87,9 +87,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   guessesAllowed: 3,
   theWord: 'cat',
-  wordLength: 3,
-  // todo
   currentRowIndex: 0,
+  state: 'active',
+  // active, complete
+  message: '',
 
   get currentGuess() {
     return this.currentRow.map(function (tile) {
@@ -104,13 +105,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       length: this.guessesAllowed
     }, function () {
       return Array.from({
-        length: _this.wordLength
+        length: _this.theWord.length
       }, function () {
         return new _Tile__WEBPACK_IMPORTED_MODULE_0__["default"]();
       });
     });
   },
   onKeyPress: function onKeyPress(key) {
+    this.message = '';
+
     if (/^[A-z]$/.test(key)) {
       this.fillTile(key);
     } else if (key === 'Enter') {
@@ -139,14 +142,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   submitGuess: function submitGuess() {
     var guess = this.currentGuess;
 
-    if (guess.length < this.wordLength) {
+    if (guess.length < this.theWord.length) {
       return;
     }
 
     if (guess === this.theWord) {
-      alert('You win');
+      this.message = 'You win';
+    } else if (this.guessesAllowed === this.currentRowIndex) {
+      this.message = 'Game over. You lose!';
+      this.state = 'complete';
     } else {
-      alert('Nope');
+      this.message = 'Incorrect';
       this.currentRowIndex++;
     }
   },
