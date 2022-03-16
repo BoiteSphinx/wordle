@@ -10,10 +10,6 @@ body {
     font-family: sans-serif;
 }
 
-#game {
-
-}
-
 .row {
     display: flex;
 }
@@ -26,6 +22,19 @@ body {
     justify-content: center;
     outline: 1px solid currentColor;
     font-size: 2rem;
+}
+
+.tile.absent {
+    background: #666;
+}
+
+.tile.present {
+    background: yellow;
+    color: black;
+}
+
+.tile.success {
+    background: green;
 }
 
 output {

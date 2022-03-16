@@ -44,6 +44,8 @@ export default {
             return
         }
 
+        this.refreshStatusForCurrentRow()
+
         if (guess === this.theWord) {
             this.message = 'You win'
         } else if (this.guessesAllowed === this.currentRowIndex) {
@@ -52,8 +54,19 @@ export default {
             this.state = 'complete'
         } else {
             this.message = 'Incorrect'
+
             this.currentRowIndex++
         }
+    },
+
+    refreshStatusForCurrentRow() {
+        this.currentRow.forEach((tile, index) => {
+            tile.status = this.theWord.includes(tile.letter) ? 'present' : 'absent'
+
+            if (this.currentGuess[index] === this.theWord[index]) {
+                tile.status = 'success'
+            }
+        })
     },
 
     get currentRow() {

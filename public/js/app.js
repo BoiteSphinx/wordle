@@ -146,6 +146,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       return;
     }
 
+    this.refreshStatusForCurrentRow();
+
     if (guess === this.theWord) {
       this.message = 'You win';
     } else if (this.guessesAllowed === this.currentRowIndex) {
@@ -155,6 +157,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.message = 'Incorrect';
       this.currentRowIndex++;
     }
+  },
+  refreshStatusForCurrentRow: function refreshStatusForCurrentRow() {
+    var _this2 = this;
+
+    this.currentRow.forEach(function (tile, index) {
+      tile.status = _this2.theWord.includes(tile.letter) ? 'present' : 'absent';
+
+      if (_this2.currentGuess[index] === _this2.theWord[index]) {
+        tile.status = 'success';
+      }
+    });
   },
 
   get currentRow() {
