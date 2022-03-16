@@ -12,31 +12,6 @@ var grid = document.querySelector('#game'); // the number of guesses (3)
 var guessesAllowed = 4; // the length of the word (3)
 
 var wordLength = 3;
-var fragment = document.createDocumentFragment();
-
-var generateGrid = function generateGrid() {
-  // generate 3 rows
-  Array.from({
-    length: guessesAllowed
-  }).forEach(function () {
-    var row = document.createElement('div');
-    row.classList.add('row'); // where each row contains 3 columns
-
-    Array.from({
-      length: wordLength
-    }).forEach(function () {
-      var tile = document.createElement('div');
-      tile.classList.add('tile');
-      row.appendChild(tile);
-    });
-    fragment.appendChild(row);
-  }); // append to the grid
-
-  grid.appendChild(fragment);
-}; // Init
-
-
-generateGrid();
 
 /***/ }),
 
