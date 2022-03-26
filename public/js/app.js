@@ -31,12 +31,12 @@ var Tile = /*#__PURE__*/function () {
 
   _createClass(Tile, [{
     key: "updateStatus",
-    value: // success, present, absent
+    value: // correct, present, absent
     function updateStatus(currentGuess, theWord) {
       this.status = theWord.includes(this.letter) ? 'present' : 'absent';
 
       if (currentGuess.indexOf(this.letter) === theWord.indexOf(this.letter)) {
-        this.status = 'success';
+        this.status = 'correct';
       }
     }
   }, {
