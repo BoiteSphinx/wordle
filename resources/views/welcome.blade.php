@@ -42,6 +42,7 @@
                     <div class="row">
                         <template x-for="key in row">
                             <button
+                                class="key"
                                 type="button"
                                 x-text="key"
                             ></button>
