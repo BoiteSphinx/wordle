@@ -1,4 +1,5 @@
 import Tile from './Tile'
+import words from './words'
 
 export default {
     guessesAllowed: 3,
@@ -6,6 +7,7 @@ export default {
     currentRowIndex: 0,
     state: 'active', // active, complete
     message: '',
+    errors: false,
 
     get currentRow() {
         return this.board[this.currentRowIndex]
@@ -27,6 +29,7 @@ export default {
 
     onKeyPress(key) {
         this.message = ''
+        this.errors = false
 
         if (/^[A-z]$/.test(key)) {
             this.fillTile(key)
@@ -61,6 +64,12 @@ export default {
     submitGuess() {
         if (this.currentGuess.length < this.theWord.length) {
             return
+        }
+
+        if ( !words.includes(this.currentGuess.toUpperCase())) {
+            this.errors = true
+
+            return this.message = 'Not a word!'
         }
 
         for (let tile of this.currentRow) {
