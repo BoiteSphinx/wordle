@@ -49,7 +49,7 @@ var Tile = /*#__PURE__*/function () {
         return this.status = "correct";
       }
 
-      this.status = "present";
+      return this.status = "present";
     }
   }, {
     key: "fill",
@@ -177,6 +177,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }, function (item, index) {
         return new _Tile__WEBPACK_IMPORTED_MODULE_0__["default"](index);
       });
+    });
+  },
+  matchingTileForKey: function matchingTileForKey(key) {
+    return this.board.flat().filter(function (tile) {
+      return tile.status;
+    }).sort(function (t1, t2) {
+      return t2.status === 'correct';
+    }).find(function (tile) {
+      return tile.letter === key.toLowerCase();
     });
   },
   onKeyPress: function onKeyPress(key) {

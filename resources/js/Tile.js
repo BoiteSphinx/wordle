@@ -29,7 +29,7 @@ export default class Tile {
             return (this.status = "correct")
         }
 
-        this.status = "present"
+        return (this.status = "present")
     }
 
     fill(key) {
