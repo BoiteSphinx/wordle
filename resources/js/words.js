@@ -1,6 +1,32 @@
 export let theWords = [
-    'cat', 'dog', 'kid', 'mom', 'dad', 'big', 'hat'
-]
+    "cat",
+    "dog",
+    "kid",
+    "mom",
+    "big",
+    "hat",
+    "pig",
+    "boy",
+    "yay",
+    "can",
+    "arm",
+    "ran",
+    "run",
+    "sun",
+    "fun",
+    "hit",
+    "sit",
+    "sad",
+    "hot",
+    "far",
+    "mad",
+    "lip",
+    "mud",
+    "pot",
+    "cut",
+    "bad",
+    "try",
+];
 
 export let allWords = [
     "AAH",

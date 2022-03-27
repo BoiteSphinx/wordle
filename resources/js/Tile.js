@@ -7,29 +7,29 @@ export default class Tile {
     }
 
     static updateStatusesForRow(row, theWord) {
-        theWord = theWord.split('')
+        theWord = theWord.split("")
 
-        // Check for correct letters
+        // check for correct letters...
         for (let tile of row) {
             if (theWord[tile.position] === tile.letter) {
-                tile.status = 'correct'
+                tile.status = "correct"
 
                 theWord[tile.position] = null
             }
         }
 
-        // Check for present letters
-        for (let tile of row) {
+        // check for present letters...
+        for (let tile of row.filter((tile) => !tile.status)) {
             if (theWord.includes(tile.letter)) {
-                tile.status = 'present'
+                tile.status = "present"
 
                 theWord[theWord.indexOf(tile.letter)] = null
             }
         }
 
-        // anything that remains is absent
-        for (let tile of row.filter(tile => ! tile.status)) {
-            tile.status = 'absent'
+        // anything that remains is absent...
+        for (let tile of row.filter((tile) => !tile.status)) {
+            tile.status = "absent"
         }
     }
 
