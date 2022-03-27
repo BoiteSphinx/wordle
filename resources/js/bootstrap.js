@@ -1,28 +1,17 @@
-window._ = require('lodash');
+// Fix the mobile Safari incorrect viewport height issue.
+// We set the --vh CSS variable in the root app.js file.
+// https://www.bram.us/2020/05/06/100vh-in-safari-on-ios/
 
-/**
- * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
- * CSRF token as a header based on the value of the "XSRF" token cookie.
- */
+let setVh = () => {
+    let vh = window.innerHeight * 0.01;
 
-window.axios = require('axios');
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+};
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.addEventListener("load", setVh);
+window.addEventListener("resize", setVh);
 
-/**
- * Echo exposes an expressive API for subscribing to channels and listening
- * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
- */
-
-// import Echo from 'laravel-echo';
-
-// window.Pusher = require('pusher-js');
-
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("main").style.maxHeight =
+        "calc(var(--vh, 1vh) * 94)";
+});
