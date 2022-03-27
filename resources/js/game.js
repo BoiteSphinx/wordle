@@ -9,6 +9,12 @@ export default {
     message: '',
     errors: false,
 
+    letters: [
+        'AZERTYUIOP'.split(''),
+        'QSDFGHJKLM'.split(''),
+        ["Enter", ...'WXCVBN'.split(''), 'Backspace']
+    ],
+
     get currentRow() {
         return this.board[this.currentRowIndex]
     },
@@ -25,6 +31,14 @@ export default {
         this.board = Array.from({ length: this.guessesAllowed }, () => {
             return Array.from({ length: this.theWord.length }, (item, index) => new Tile(index))
         })
+    },
+
+    matchingTileForKey(key) {
+        return this.board
+            .flat()
+            .filter(tile => tile.status)
+            .sort((t1, t2) => t2.status === 'correct')
+            .find(tile => tile.letter === key.toLowerCase())
     },
 
     onKeyPress(key) {

@@ -11,7 +11,7 @@ export default class Tile {
             tile.updateStatus(theWord)
         }
 
-        row.filter(tile.status === "present")
+        row.filter((tile) => tile.status === "present")
             .filter((tile) =>
                 row.some(
                     (t) => t.letter === tile.letter && t.status === "correct"
@@ -29,7 +29,7 @@ export default class Tile {
             return (this.status = "correct")
         }
 
-        this.status = "present"
+        return (this.status = "present")
     }
 
     fill(key) {
