@@ -1,8 +1,9 @@
 import Tile from './Tile'
-import words from './words'
+import {allWords, theWords} from './words'
 
 export default {
     guessesAllowed: 3,
+    // theWord: theWords[Math.floor(Math.random() * theWords.length)],
     theWord: 'cat',
     currentRowIndex: 0,
     state: 'active', // active, complete
@@ -80,28 +81,24 @@ export default {
             return
         }
 
-        if ( !words.includes(this.currentGuess.toUpperCase())) {
+        if ( !allWords.includes(this.currentGuess.toUpperCase())) {
             this.errors = true
+            this.message = 'Not a word!'
 
-            return this.message = 'Not a word!'
+            return
         }
 
         Tile.updateStatusesForRow(this.currentRow, this.theWord)
 
         if (this.currentGuess === this.theWord) {
             this.state = 'complete'
-
-            return this.message = 'You win'
-        }
-
-        if (this.remainingGuesses === 0) {
+            this.message = 'You win'
+        } else if (this.remainingGuesses === 0) {
             this.state = 'complete'
-
-            return this.message = 'Game over. You lose!'
+            this.message = `Game over. You lose! (${this.theWord})`
+        } else {
+            this.currentRowIndex++
+            this.message = 'Incorrect'
         }
-
-        this.currentRowIndex++
-
-        return this.message = 'Incorrect'
     },
 }
